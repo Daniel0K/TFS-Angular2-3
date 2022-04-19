@@ -1,7 +1,8 @@
 <app-card-add-form (add)="addCard($event)"></app-card-add-form>
+<button class="turnButton" (click)="turnAllCards()">Перевернуть все карты</button>
 <div class="list">
-  <app-card-item *ngFor="let card of cards; let i = index" [card]="card" (click)="isAnimationRunning ? 0: flipCard(card,i)"
-                 (delete)="deleteCard($event)"
+  <app-card-item *ngFor="let card of cardsService.cards; let i = index" [card]="card" (click)="isAnimationRunning ? 0: flipCard(card,i)"
+                 (delete)="delCard($event)"
                  (animationResult)="isAnimationRunning = $event"
   ></app-card-item>
 </div>
