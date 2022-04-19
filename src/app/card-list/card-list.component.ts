@@ -49,6 +49,8 @@ export class CardListComponent implements OnInit {
 
   lastOpened: number | undefined = -1;
 
+  isAnimationRunning: boolean = false;
+
   constructor() {
   }
 

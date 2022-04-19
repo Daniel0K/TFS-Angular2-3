@@ -1,5 +1,7 @@
 <div class="container">
-      <div [ngClass]="card.isOpened ? 'flipped' : ''" class="item">
+  <div [@triggerCard]="card.isOpened"
+       (@triggerCard.start)="startAnimationResult()"
+       (@triggerCard.done)="endAnimationResult()" class="item">
     <div class="front item_front">
       <div class="item-content">
         <div class="close" (click)="deleteCard();$event.stopPropagation()"></div>
