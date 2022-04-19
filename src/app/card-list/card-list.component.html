@@ -1,4 +1,4 @@
 <app-card-add-form (add)="addCard($event)"></app-card-add-form>
 <div class="list">
-  <app-card-item *ngFor="let card of cards" [card]="card" (flip)="flipCard(card)" (delete)="deleteCard($event)"></app-card-item>
+  <app-card-item *ngFor="let card of cards; let i = index" [card]="card" (click)="flipCard(card,i)" (delete)="deleteCard($event)"></app-card-item>
 </div>

@@ -55,39 +55,22 @@ export class CardListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  flipCard(card: Card): void {
-    console.log('FLIP')
-    console.log(card);
-    console.log(this.lastOpened)
-    console.log(this.cards)
-
+  flipCard(card: Card, i: number): void {
     if (this.lastOpened === -1 ) {
-      this.cards.find((el) => {
-        return el.id === card.id
-      })!.isOpened = true;
-      // this.cards[card.id!].isOpened = true;
-      this.lastOpened = card.id;
+      this.cards[i].isOpened = true;
+      this.lastOpened = i;
       return
     }
 
-    if (this.lastOpened !== card.id) {
-      this.cards.find((el) => {
-        return el.id === this.lastOpened!
-      })!.isOpened = false;
-      // this.cards[this.lastOpened!].isOpened = false;
-      this.lastOpened = card.id;
-      this.cards.find((el) => {
-        return el.id === card.id
-      })!.isOpened = true;
-      // this.cards[card.id!].isOpened = true;
+    if (this.lastOpened !== i) {
+      this.cards[this.lastOpened!].isOpened = false;
+      this.lastOpened = i;
+      this.cards[i].isOpened = true;
       return
     }
 
-    if (this.lastOpened === card.id) {
-      this.cards.find((el) => {
-        return el.id === card.id
-      })!.isOpened = false;
-      // this.cards[card.id!].isOpened = false;
+    if (this.lastOpened === i) {
+      this.cards[i].isOpened = false;
       this.lastOpened = -1;
       return
     }
