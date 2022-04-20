@@ -10,8 +10,6 @@ import {StateSaver} from "../../shared/services/state-saver.service";
 })
 export class CardListComponent implements OnInit {
 
-  lastOpened: number | undefined = -1;
-
   isAnimationRunning: boolean = false;
 
   constructor(public cardsService: CardsService,
@@ -19,16 +17,19 @@ export class CardListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cardsService.initialize();
-    this.stateSaver.returnState(this.cardsService.cards);
+    this.cardsService.init();
   }
 
   addCard(card: Card): void {
     this.cardsService.addCard(card);
   }
 
-  delCard(card: Card): void {
+  delCard(card: Card,i:number): void {
+    console.log(card,i);
+    // this.stateSaver.deleteCard(card.isOpened,i);
+    this.stateSaver.fixSetOfCards(i)
     this.cardsService.delCard(card);
+
   }
 
   flipCard(card: Card, i: number): void {
@@ -48,6 +49,7 @@ export class CardListComponent implements OnInit {
     this.cardsService.cards.forEach((el) => {
       el.isOpened = false;
     })
+    this.stateSaver.clearState();
   }
 
 }

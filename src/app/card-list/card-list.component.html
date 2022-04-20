@@ -2,7 +2,7 @@
 <button class="turnButton" (click)="turnAllCards()">Перевернуть все карты</button>
 <div class="list">
   <app-card-item *ngFor="let card of cardsService.cards; let i = index" [card]="card" (click)="isAnimationRunning ? 0: flipCard(card,i)"
-                 (delete)="delCard($event)"
+                 (delete)="delCard($event,i)"
                  (animationResult)="isAnimationRunning = $event"
   ></app-card-item>
 </div>

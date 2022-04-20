@@ -21,4 +21,8 @@ export class CardsApiService implements ICardsApiService {
   getAll(): Observable<Card[]> {
     return this.httpClient.get<Card[]>(host);
   }
+
+  init(): Observable<Card[]> {
+    return this.httpClient.get<Card[]>(host);
+  }
 }
