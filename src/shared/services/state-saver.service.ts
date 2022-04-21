@@ -13,9 +13,7 @@ export class StateSaver {
   }
 
   returnState(cards: Card[]): void {
-    console.log('return',this.states)
     this.states = new Map(JSON.parse(localStorage.getItem('cache')!));
-    console.log(this.states)
     if (this.states.size !== 0) {
       this.states.forEach((value, key) => {
         if (cards[key] !== undefined) {
@@ -32,7 +30,6 @@ export class StateSaver {
 
   deleteCard(state: boolean, i: number): void {
     this.states.delete(i);
-    console.log('Delete CaRD State')
     localStorage.setItem('cache', JSON.stringify(Array.from(this.states.entries())));
   }
 
@@ -42,16 +39,15 @@ export class StateSaver {
 
   fixSetOfCards(i: number) {
     let fixedArr = new Map(JSON.parse(localStorage.getItem('cache')!));
-
-    console.log(fixedArr)
-    for (const key of fixedArr.keys()) {
-      if (parseInt(<string>key) > i) {
+    let ArrIterator = new Map(JSON.parse(localStorage.getItem('cache')!))
+    for (const key of ArrIterator.keys()) {
+      if (<number>key > i) {
         let value = fixedArr.get(key);
         fixedArr.delete(key);
-        fixedArr.set((parseInt(<string>key) - 2), value)
+        fixedArr.set((<number>key - 1), value)
       }
     }
-    console.log(fixedArr)
     localStorage.setItem('cache', JSON.stringify(Array.from(fixedArr.entries())));
+    this.states = new Map(JSON.parse(localStorage.getItem('cache')!));
   }
 }

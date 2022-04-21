@@ -25,16 +25,19 @@ export class CardListComponent implements OnInit {
   }
 
   delCard(card: Card,i:number): void {
-    console.log(card,i);
-    // this.stateSaver.deleteCard(card.isOpened,i);
+
+    this.stateSaver.deleteCard(card.isOpened,i);
+
     this.stateSaver.fixSetOfCards(i)
+
     this.cardsService.delCard(card);
+
+    this.isAnimationRunning = true;
 
   }
 
   flipCard(card: Card, i: number): void {
     card.isOpened = !card.isOpened;
-
     if (card.isOpened) {
       this.stateSaver.saveCard(card.isOpened,i);
     }
